@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
         <div className={styles.priceSection}>
           <span className={styles.sellingPrice}>${product?.price || "0"}</span>
           <span className={styles.actualPrice}>${product?.compare_at_price || "0"}</span>
-          <span className={styles.offPercent}>({(100-(product?.price * 100) / product?.compare_at_price).toFixed(0) || "0"}%)</span>
+          <span className={styles.offPercent}>({(100-(product?.price * 100) / product?.compare_at_price).toFixed(0) || "0"}% Off)</span>
         </div>
       </div>
     </div>
