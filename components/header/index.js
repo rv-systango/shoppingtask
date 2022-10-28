@@ -1,23 +1,30 @@
 import Image from "next/image";
 import styles from "../../styles/Header.module.css";
 import { Badge, IconButton } from "rsuite";
-import { FaCartPlus } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Header() {
-  const appLogo = <Image src="/applogo.svg" width={25} height={25} />;
-  const searchIcon = <Image src="/searchicon.svg" width={18} height={18} />;
-  const userIcon = <Image src="/usericon.svg" width={18} height={18} />;
-  const cartIcon = <Image src="/carticon.svg" width={18} height={18} />;
+  const appLogo = <Image src="/applogo.svg" width={25} height={25} alt="" />;
+  const searchIcon = (
+    <Image src="/searchicon.svg" width={18} height={18} alt="" />
+  );
+  const userIcon = <Image src="/usericon.svg" width={18} height={18} alt="" />;
+  const cartIcon = <Image src="/carticon.svg" width={18} height={18} alt="" />;
 
   return (
     <div className={styles.headerContainer}>
       {appLogo}
       <div className={styles.mainNavigation}>
         <ul>
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/about">Our Stores</Link></li>
-            <li><Link href="/about">Contact Us</Link></li>
+          <li>
+            <Link href="/about">About Us</Link>
+          </li>
+          <li>
+            <Link href="/about">Our Stores</Link>
+          </li>
+          <li>
+            <Link href="/about">Contact Us</Link>
+          </li>
         </ul>
       </div>
       <div className={styles.rightSideIcons}>

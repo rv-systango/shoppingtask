@@ -1,0 +1,51 @@
+.productListContainer {
+  display: flex;
+  gap: 8px 0px;
+  flex-direction: column;
+  min-width: 800px;
+  max-width: 100vw;
+  padding: 15px;
+}
+
+.breadcrumb {
+  font-size: 12px;
+}
+
+.filterHeading {
+  font-size: 16px;
+  font-weight: 700;
+  padding-top: 8px;
+  color: #000;
+}
+
+.filterSubHeading {
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 5px;
+  opacity: 0.7;
+}
+
+.filterSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  font-weight: 700;
+  color: #000;
+}
+
+.filterList {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.productsList {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px 10px;
+  flex-wrap: wrap;
+}

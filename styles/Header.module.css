@@ -45,3 +45,19 @@
 .mainNavigation ul li a:hover{
   color: darkslategray;
 }
+
+
+.inviteBannerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  background: linear-gradient(90.06deg, #181716 0%, #ED4E08 99.97%);
+}
+
+.inviteButtonContainer{
+  margin-left: 5px;
+}

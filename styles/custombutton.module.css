@@ -1,0 +1,27 @@
+.custombutton {
+  background: #fff;
+  outline: none;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 3px 12px;
+  border: 1px solid #878787;
+  border-radius: 3px;
+  margin-right: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.custombutton:hover {
+  color: #000;
+  box-shadow: 0px 0px 10px rgba(204, 99, 13, 0.3);
+  border-color: rgba(255, 68, 0, 0.541);
+}
+
+.rounded_02 {
+  border-radius: 10px;
+}
+
+.noborder_05 {
+  border: 0px solid #878787;
+  border-radius: 10px;
+}

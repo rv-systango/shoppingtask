@@ -1,0 +1,79 @@
+/* Product card */
+.productCard {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  min-width: 250px;
+  min-height: 250px;
+  justify-content: flex-start;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+  background: transparent;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+
+.productCard:hover {
+  cursor: pointer;
+  background: linear-gradient(180deg, #ffffff 0%, #f0ecea 100%);
+  border-color: rgba(238, 179, 147, 0.5);
+}
+
+.productCard:hover.productCard img {
+  opacity: 1;
+}
+
+.productCard img {
+  border-radius: 4px;
+  opacity: 0.9;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.productDetails {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  padding: 10px 8px;
+  color: #000;
+}
+
+.vendorName {
+  font-weight: 700;
+}
+
+.productName {
+  font-size: 13px;
+  opacity: 0.8;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 15px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.priceSection {
+  display: flex;
+  gap: 3px;
+  font-size: 13px;
+}
+
+.sellingPrice {
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.actualPrice {
+  opacity: 0.7;
+  text-decoration: line-through;
+}
+
+.offPercent {
+  color: red;
+  opacity: 0.7;
+  font-weight: 700;
+  font-size: 12px;
+}
