@@ -1,9 +1,9 @@
 import styles from "../../styles/productCard.module.css";
-import ButtonC from "../customButton";
 
-export default function ProductCard({ product }) {
+
+export default function ProductCard({ product, showDetails =() => {}, onClick=() => {} }) {
   return (
-    <div className={styles.productCard}>
+    <div className={styles.productCard} onClick={e => showDetails(product)}>
       <img
         src={product?.image_src[0] || "-"}
         alt=""

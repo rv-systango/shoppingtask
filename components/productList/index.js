@@ -3,11 +3,21 @@ import { useEffect } from "react";
 import styles from "../../styles/productList.module.css";
 import ButtonC from "../customButton";
 import ProductCard from "../productCard";
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+} from "reactstrap";
+import ProductDetail from "../productDetail";
 
 export default function ProductList({ products = null }) {
   const [filters, setFilters] = useState([]);
+  const [activeTag, setActiveTag] = useState("All Products");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [selectedProdutToView, setSelectedProdutToView] = useState(null);
   useEffect(() => {
     if (products) {
+      setFilteredProducts([...products]);
       let uiq = ["All Products"];
       products.map((i, index) => {
         if (!uiq.includes(i.tag)) {
@@ -17,6 +27,18 @@ export default function ProductList({ products = null }) {
       setFilters(uiq);
     }
   }, [products]);
+
+  function filterData(tag = "All Products") {
+    const data = [...products];
+    setActiveTag(tag);
+    if (tag === filters[0]) {
+      setFilteredProducts(data);
+    } else {
+      let fData = data.filter((item, index) => item.tag === tag);
+      setFilteredProducts(fData);
+    }
+  }
+
   return (
     <div className={styles.productListContainer}>
       <div className={styles.breadcrumb}>
@@ -25,7 +47,7 @@ export default function ProductList({ products = null }) {
       <div className={styles.filterHeading}>
         All Products
         <span className={styles.filterSubHeading}>
-          ({products && products?.length} Products)
+          ({filteredProducts && filteredProducts?.length} Products)
         </span>
       </div>
       <div className={styles.filterSection}>
@@ -36,7 +58,12 @@ export default function ProductList({ products = null }) {
             {filters.length &&
               filters.map((item, index) => (
                 <div key={`filter-item-${index}`}>
-                  <ButtonC text={item} type={2} />
+                  <ButtonC
+                    text={item}
+                    type={2}
+                    activeTag={activeTag}
+                    onClick={(e) => filterData(item)}
+                  />
                 </div>
               ))}
           </span>
@@ -44,13 +71,32 @@ export default function ProductList({ products = null }) {
         <span>{/* Sort dropdown ... */}</span>
       </div>
       <div className={styles.productsList}>
-        {products &&
-          products.map((i, index) => (
+        {filteredProducts &&
+          filteredProducts.map((i, index) => (
             <div key={`product-item-${index}`}>
-              <ProductCard product={i} />
+              <ProductCard product={i} showDetails={setSelectedProdutToView} />
             </div>
           ))}
       </div>
+
+      <Modal
+        isOpen={selectedProdutToView ? true : false}
+        backdrop="static"
+        fade={true}
+        size="lg"
+        toggle={(e) => setSelectedProdutToView(!selectedProdutToView)}
+      >
+        <ModalHeader
+          toggle={(e) => setSelectedProdutToView(!selectedProdutToView)}
+        >
+          <div className={styles.detailViewProductTitle}>
+            {selectedProdutToView?.name}
+          </div>
+        </ModalHeader>
+        <ModalBody>
+          <ProductDetail product={selectedProdutToView} />
+        </ModalBody>
+      </Modal>
     </div>
   );
 }
