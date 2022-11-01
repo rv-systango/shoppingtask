@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Button, Col, Row } from "reactstrap";
+import store from "../../redux/configureStore";
+import { addToCart } from "../../redux/slices/cartSlice";
+import { getProductDetails } from "../../redux/slices/productSlice";
 import styles from "../../styles/productDetail.module.css";
 import ButtonC from "../customButton";
 
-export default function ProductDetail({ product }) {
+export default function ProductDetail({ product, callback = () => {} }) {
   const offPercentage =
     product &&
     (100 - (product?.price * 100) / product?.compare_at_price).toFixed(0);
@@ -17,9 +20,10 @@ export default function ProductDetail({ product }) {
     function handleAddToCard(){
       if(!selectedOption) return alert("Please select a available option.");
       setSelectedProduct({...product, selectedOption});
+      store.dispatch(addToCart({...product, selectedOption}));
+      callback();
     }
 
-    console.log(selectedProduct);
 
   const AvailableOption = (
     <div className={styles.Option}>

@@ -1,11 +1,12 @@
-import axios from "axios";
+
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import Header from "../components/header";
 import InviteBanner from "../components/inviteBanner";
 import ProductList from "../components/productList";
 import styles from "../styles/Home.module.css";
-import dataJSON from "../public/data.json";
+import { requestProducts } from "../redux/slices/productSlice";
+import store from "../redux/configureStore";
 
 export const appContext = React.createContext();
 
@@ -16,7 +17,7 @@ export default function Home() {
   useEffect(init, []);
 
   function init() {
-    setState((s) => ({ ...s, products: dataJSON.data }));
+    store.dispatch(requestProducts());
   }
   return (
     <div className={styles.container}>

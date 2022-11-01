@@ -3,18 +3,16 @@ import { useEffect } from "react";
 import styles from "../../styles/productList.module.css";
 import ButtonC from "../customButton";
 import ProductCard from "../productCard";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-} from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import ProductDetail from "../productDetail";
+import { useSelector } from "react-redux";
 
-export default function ProductList({ products = null }) {
+export default function ProductList() {
   const [filters, setFilters] = useState([]);
   const [activeTag, setActiveTag] = useState("All Products");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedProdutToView, setSelectedProdutToView] = useState(null);
+  const products = useSelector((state) => state.productSlice.prodcuts);
   useEffect(() => {
     if (products) {
       setFilteredProducts([...products]);
@@ -94,7 +92,12 @@ export default function ProductList({ products = null }) {
           </div>
         </ModalHeader>
         <ModalBody>
-          <ProductDetail product={selectedProdutToView} />
+          <ProductDetail
+            product={selectedProdutToView}
+            callback={() => {
+              setSelectedProdutToView(null);
+            }}
+          />
         </ModalBody>
       </Modal>
     </div>

@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "../../styles/Header.module.css";
 import { Badge, IconButton } from "rsuite";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const appLogo = <Image src="/applogo.svg" width={25} height={25} alt="" />;
@@ -10,6 +12,8 @@ export default function Header() {
   );
   const userIcon = <Image src="/usericon.svg" width={18} height={18} alt="" />;
   const cartIcon = <Image src="/carticon.svg" width={18} height={18} alt="" />;
+  const router = useRouter();
+  const cartItems = useSelector((state) => state.cartSlice.cartItems);
 
   return (
     <div className={styles.headerContainer}>
@@ -31,8 +35,10 @@ export default function Header() {
         <div className={styles.searchText}>Search </div>
         <IconButton circle size="sm" icon={searchIcon}></IconButton>
         <IconButton circle size="sm" icon={userIcon}></IconButton>
-        <Badge content="1">
-          <IconButton circle size="sm" icon={cartIcon}></IconButton>
+        <Badge content={cartItems.length}>
+          <Link href={{ pathname: "/cart" }}>
+            <IconButton circle size="sm" icon={cartIcon}></IconButton>
+          </Link>
         </Badge>
       </div>
     </div>
